@@ -1,0 +1,216 @@
+/* app.css - additions for v4: field notices, unified sign-in box, dashboards, admin panel. Loads after styles.css. */
+
+/* ---------- notice under every input (validate.js) ---------- */
+.field-error { display: block; margin-top: 5px; font-size: .82rem; font-weight: 600; color: var(--accent-color); text-align: left; line-height: 1.35; }
+.field-error:empty { display: none; }
+.field-error::before { content: "\f071"; font-family: "Font Awesome 6 Free"; font-weight: 900; margin-right: 6px; }
+.form-group input.input-error, .form-group select.input-error, .form-group textarea.input-error, input.input-error, textarea.input-error { border: 2px solid var(--accent-color) !important; background-color: #FFF5F5 !important; }
+.form-group input.input-ok, .form-group textarea.input-ok { border-color: #2E7D32; }
+.char-count { display: block; text-align: right; font-size: .78rem; color: #666; margin-top: 3px; }
+.terms-error { margin: -8px 0 12px 30px; }
+
+.form-group select, .form-group textarea, .dash-wrap select, .dash-wrap textarea, .admin-wrap select, .admin-wrap textarea {
+    width: 100%; padding: 12px; border: 1px solid #CCCCCC; border-radius: 8px; background: #fff; font: inherit; font-size: .95rem;
+}
+.form-group textarea { min-height: 90px; resize: vertical; }
+.form-group select:focus, .form-group textarea:focus { border-color: var(--secondary-color); outline: none; }
+
+/* ---------- unified quick sign-in box (auth.js) ---------- */
+.quick-auth { margin-top: 6px; }
+.quick-auth .auth-provider-row { gap: 10px; }
+.quick-auth .sms-panel { margin-top: 12px; padding: 14px; border: 1px solid #E3E3E3; border-radius: 10px; background: #FBFBFB; }
+.quick-auth .sms-panel[hidden] { display: none !important; }
+.quick-auth .google-slot { display: flex; justify-content: center; min-height: 44px; }
+.quick-auth .provider-off { font-size: .85rem; color: #777; text-align: center; }
+.quick-msg { margin: 8px 0 0; }
+
+/* ---------- dashboards ---------- */
+.dash-wrap, .admin-wrap { max-width: 100%; }
+.dash-wrap h3, .admin-wrap h3 { text-align: left; }
+.dash-wrap p, .admin-wrap p { text-align: left; }
+.bars { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding: 6px 0; border-bottom: 2px solid #E3E3E3; margin-bottom: 6px; }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 0; }
+.bar-col i { display: block; width: 100%; max-width: 46px; min-height: 2px; background: linear-gradient(180deg, var(--primary-color), var(--logo-green)); border-radius: 5px 5px 0 0; }
+.bar-col small { font-size: .7rem; color: #555; white-space: nowrap; }
+.bar-labels { display: flex; gap: 8px; }
+.bar-labels span { flex: 1; text-align: center; font-size: .72rem; color: #555; }
+.hbar { display: grid; grid-template-columns: minmax(90px, 160px) 1fr auto; gap: 8px; align-items: center; margin: 6px 0; font-size: .9rem; }
+.hbar .track { background: #EEE; border-radius: 999px; height: 12px; overflow: hidden; }
+.hbar .fill { display: block; height: 100%; background: var(--secondary-color); border-radius: 999px; }
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.panel { background: #fff; border: 1px solid #E6E6E6; border-radius: 10px; padding: 14px; }
+.panel h3 { margin-top: 0; }
+.low { color: var(--accent-color); font-weight: 700; }
+.row-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.row-actions button, .mini-btn { padding: 5px 10px; font-size: .8rem; border-radius: 6px; border: 1px solid var(--secondary-color); background: #fff; color: var(--secondary-color); cursor: pointer; font-weight: 700; font-family: inherit; }
+.row-actions button.danger, .mini-btn.danger { border-color: var(--accent-color); color: var(--accent-color); }
+.row-actions button:disabled { opacity: .45; cursor: not-allowed; }
+.badge-on { background: #D9F0DA; color: #1B5E20; }
+.badge-off { background: #EEE; color: #666; }
+.badge-Admin { background: #E7E4FA; color: var(--secondary-color); }
+.thumb { width: 54px; height: 40px; object-fit: cover; border-radius: 5px; background: #EEE; }
+.admin-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 8px 0 14px; }
+.admin-toolbar input, .admin-toolbar select { width: auto; min-width: 150px; padding: 9px 10px; border: 1px solid #CCC; border-radius: 8px; font: inherit; }
+.admin-form { border: 2px solid var(--pressed-color); border-radius: 10px; padding: 14px; margin: 12px 0 18px; background: #FFFDF5; }
+.admin-form .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.admin-form .form-group { margin-bottom: 4px; }
+.check-row { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.check-row input { width: 18px; height: 18px; accent-color: var(--primary-color); }
+.msg-body { white-space: pre-wrap; word-break: break-word; max-width: 420px; }
+.who-nav { font-weight: 700; }
+@media (max-width: 640px) { .hbar { grid-template-columns: 90px 1fr auto; } .dash-table { font-size: .84rem; } }
+
+/* ===================================================================================
+   INDIVIDUAL BUTTON GRADIENTS ONLY (White Text -> Reversed Gradient + Black Text on Hover)
+   =================================================================================== */
+
+/* Make sure any wrapper around the buttons has NO background or border */
+#quickAuth,
+#quickAuth > div,
+#quickAuth .authsim-buttons,
+#quickAuth .auth-provider-row,
+#quickAuth .authpair-google,
+#quickAuth .authpair-google > div,
+.authpair-google,
+.authpair-google > div {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+#quickAuth .authsim-buttons,
+#quickAuth .auth-provider-row,
+#quickAuth {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+}
+
+/* Base style for each individual button only: White text by default */
+#quickAuth a.authsim-btn,
+#quickAuth button.authsim-btn,
+#quickAuth .authsim-btn,
+.auth-provider-row .authsim-btn,
+.authsim-btn {
+    --btn-angle: 135deg;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 11px 16px !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 8px !important;
+    font-family: inherit !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14) !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    transition: color 0.22s ease, transform 0.12s ease, box-shadow 0.22s ease, filter 0.22s ease !important;
+}
+
+#quickAuth .authsim-btn::before,
+#quickAuth .authsim-btn::after,
+.authsim-btn::before,
+.authsim-btn::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 1. Google button only: Red -> Orange -> Light Yellow */
+#quickAuth .authsim-btn-google,
+.auth-provider-row .authsim-btn-google,
+.authsim-btn-google {
+    background: linear-gradient(var(--btn-angle), #D31919 0%, #EB820B 50%, #FFF59D 100%) !important;
+}
+
+/* 2. Facebook button only: Light Blue -> Blue -> Dark Indigo */
+#quickAuth .authsim-btn-facebook,
+.auth-provider-row .authsim-btn-facebook,
+.authsim-btn-facebook {
+    background: linear-gradient(var(--btn-angle), #4FC3F7 0%, #1877F2 50%, #1E1B4B 100%) !important;
+}
+
+/* 3. SMS button only: Dark Green -> Forest Green -> Light Green */
+#quickAuth .authsim-btn-sms,
+.auth-provider-row .authsim-btn-sms,
+.authsim-btn-sms {
+    background: linear-gradient(var(--btn-angle), #0D3B16 0%, #2E7D32 50%, #8BE28B 100%) !important;
+}
+
+/* Hover & Focus: Reverse gradient flow (315deg) & turn text Black */
+#quickAuth .authsim-btn:hover,
+#quickAuth .authsim-btn:focus-visible,
+.auth-provider-row .authsim-btn:hover,
+.auth-provider-row .authsim-btn:focus-visible,
+.authsim-btn:hover,
+.authsim-btn:focus-visible {
+    --btn-angle: 315deg;
+    color: #000000 !important;
+    text-shadow: none !important;
+    border: none !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.24) !important;
+    filter: brightness(1.04) !important;
+}
+
+#quickAuth .authsim-btn:active,
+.authsim-btn:active {
+    transform: scale(0.99) !important;
+}
+
+/* Google icon keeps its original logo colors */
+.authsim-btn-google .authsim-g,
+.authsim-btn-google svg,
+.authsim-btn-google img {
+    background: #FFFFFF !important;
+    border-radius: 50% !important;
+    padding: 3px !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+}
+
+/* Facebook icon: Dark Blue logo color */
+.authsim-btn-facebook i,
+.authsim-btn-facebook:hover i,
+.authsim-btn-facebook:focus-visible i {
+    color: #0B4F9C !important;
+    background: #FFFFFF !important;
+    border-radius: 50% !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.95rem !important;
+    text-shadow: none !important;
+}
+
+/* SMS icon: Light / Apple Green logo color */
+.authsim-btn-sms i,
+.authsim-btn-sms:hover i,
+.authsim-btn-sms:focus-visible i {
+    color: #56B828 !important;
+    background: #FFFFFF !important;
+    border-radius: 50% !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.85rem !important;
+    text-shadow: none !important;
+}
